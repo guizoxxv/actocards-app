@@ -1,29 +1,24 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div id="app" class="h-full flex items-center justify-center">
+    <main>
+      <h1>ACTOCARDS</h1>
+      <Game />
+    </main>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+import 'tailwindcss/tailwind.css';
+import Game from '@/components/Game.vue';
+import Leaderboard from '@/components/Leaderboard.vue';
+import '@/assets/app.scss';
 
 @Component({
   components: {
-    HelloWorld,
+    Game,
+    Leaderboard,
   },
 })
 export default class App extends Vue {}
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
