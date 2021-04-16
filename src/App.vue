@@ -4,7 +4,7 @@
       <div class="content">
         <h1 class="text-center mb-5">ACTOCARDS</h1>
         <Game class="mb-5" />
-        <Leaderboard />
+        <!-- <Leaderboard /> -->
       </div>
     </main>
   </div>
