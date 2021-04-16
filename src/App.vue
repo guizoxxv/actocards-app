@@ -1,8 +1,11 @@
 <template>
-  <div id="app" class="h-full flex items-center justify-center">
-    <main>
-      <h1>ACTOCARDS</h1>
-      <Game />
+  <div id="app">
+    <main class="p-3 flex flex-col items-center justify-center">
+      <div class="content">
+        <h1 class="text-center mb-5">ACTOCARDS</h1>
+        <Game class="mb-5" />
+        <Leaderboard />
+      </div>
     </main>
   </div>
 </template>
@@ -22,3 +25,9 @@ import '@/assets/app.scss';
 })
 export default class App extends Vue {}
 </script>
+
+<style lang="scss" scoped>
+.content {
+  max-width: 960px;
+}
+</style>

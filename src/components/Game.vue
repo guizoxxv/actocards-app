@@ -1,30 +1,37 @@
 <template>
-  <div>
-    <h2>Feeling Lucky?</h2>
+  <el-card class="box-card">
+    <h2 class="text-center">Feeling Lucky?</h2>
+    <div class="underline my-5">
+      How it works?
+    </div>
     <form>
-      <div>
-        <div>Name:</div>
-        <input type="text">
+      <div class="mb-3">
+        <label for="name" class="text-sm">Name:</label>
+        <el-input id="name" placeholder="Player's name" v-model="name"></el-input>
       </div>
-      <div>
-        <div>Cards:</div>
-        <input type="text">
+      <div class="mb-5">
+        <label for="cards" class="text-sm">Cards:</label>
+        <el-input id="cards" placeholder="Player's cards" v-model="cards"></el-input>
       </div>
-      <div>
-        How it works?
-      </div>
-      <div>
-        <button type="submit">
+      <div class="text-center">
+        <el-button type="primary">
           Play
-        </button>
+        </el-button>
       </div>
     </form>
-  </div>
+  </el-card>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
-@Component
+@Component({
+  data() {
+    return {
+      name: '',
+      cards: '',
+    };
+  },
+})
 export default class Game extends Vue {}
 </script>
