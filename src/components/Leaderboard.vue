@@ -32,9 +32,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import Vue from 'vue';
 
-@Component({
+export default Vue.extend({
   data() {
     return {
       tableData: [
@@ -59,10 +59,5 @@ import { Component, Vue } from 'vue-property-decorator';
       ],
     };
   },
-})
-export default class Leaderboard extends Vue {}
+});
 </script>
-
-<style lang="scss" scoped>
-//
-</style>

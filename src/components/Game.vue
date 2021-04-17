@@ -13,8 +13,13 @@
         @close="closeGameInstructionsModal"
       />
     </div>
-    <el-form ref="form" :model="form" @submit.native.prevent="handleSubmit">
-      <el-form-item class="mb-2">
+    <el-form
+      ref="form"
+      :model="form"
+      @input.native="handleInput"
+      @submit.native.prevent="handleSubmit"
+    >
+      <el-form-item :error="errors.name">
         <span slot="label" class="text-sm">Name:</span>
         <el-input
           placeholder="Player's name"
@@ -22,7 +27,7 @@
           required
         />
       </el-form-item>
-      <el-form-item class="mb-5">
+      <el-form-item :error="errors.cards" class="mb-8">
         <span slot="label" class="text-sm">Cards:</span>
         <el-input
           placeholder="Player's cards"
@@ -31,7 +36,16 @@
         />
       </el-form-item>
       <el-form-item class="text-center">
+        <el-button
+          type="warning"
+          native-type="button"
+          @click="clearForm"
+        >
+          <font-awesome-icon icon="times" />
+          Clear
+        </el-button>
         <el-button type="primary" native-type="submit">
+          <font-awesome-icon icon="play" />
           Play
         </el-button>
       </el-form-item>
@@ -40,11 +54,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import Vue from 'vue';
 import GameInstructionsModal from '@/components/GameInstructionsModal.vue';
 import { playRequest } from '@/services/api';
 
-@Component({
+export default Vue.extend({
   components: {
     GameInstructionsModal,
   },
@@ -56,26 +70,47 @@ import { playRequest } from '@/services/api';
         cards: '',
       },
       errors: {
-        name: false,
-        cards: false,
+        active: false,
+        name: '',
+        cards: '',
       },
     };
   },
   methods: {
     async handleSubmit() {
       try {
-        const response = await playRequest(this.$data.form);
+        const response = await playRequest(this.form);
         console.log(response);
       } catch (e) {
         if (e.response.status === 422) {
-          console.log('validation error!');
+          const errorMsgs = e.response.data.errors;
+
+          this.errors = {
+            active: true,
+            name: errorMsgs.name?.[0] || '',
+            cards: errorMsgs.cards?.[0] || '',
+          };
         }
       }
     },
+    handleInput() {
+      if (this.errors.active) {
+        this.errors = {
+          active: false,
+          name: '',
+          cards: '',
+        };
+      }
+    },
+    clearForm() {
+      this.form = {
+        name: '',
+        cards: '',
+      };
+    },
     closeGameInstructionsModal() {
-      this.$data.gameInstructionsDialogVisible = false;
+      this.gameInstructionsDialogVisible = false;
     },
   },
-})
-export default class Game extends Vue {}
+});
 </script>

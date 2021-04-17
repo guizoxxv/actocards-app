@@ -41,9 +41,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import Vue from 'vue';
 
-@Component({
+export default Vue.extend({
   props: {
     visible: Boolean,
   },
@@ -52,6 +52,5 @@ import { Component, Vue } from 'vue-property-decorator';
       this.$emit('close');
     },
   },
-})
-export default class GameInstructionsModal extends Vue {}
+});
 </script>

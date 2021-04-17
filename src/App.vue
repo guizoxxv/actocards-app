@@ -11,19 +11,18 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import Vue from 'vue';
 import 'tailwindcss/tailwind.css';
 import Game from '@/components/Game.vue';
 import Leaderboard from '@/components/Leaderboard.vue';
 import '@/assets/app.scss';
 
-@Component({
+export default Vue.extend({
   components: {
     Game,
-    Leaderboard,
+    // Leaderboard,
   },
-})
-export default class App extends Vue {}
+});
 </script>
 
 <style lang="scss" scoped>
