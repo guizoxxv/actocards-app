@@ -4,12 +4,12 @@
     <div class="my-5">
       <span
         class="underline cursor-pointer hover:font-bold"
-        @click="gameInstructionsDialogVisible=true"
+        @click="gameInstructionsModalVisible=true"
       >
         How it works?
       </span>
       <GameInstructionsModal
-        :visible="gameInstructionsDialogVisible"
+        :visible="gameInstructionsModalVisible"
         @close="closeGameInstructionsModal"
       />
     </div>
@@ -50,21 +50,31 @@
         </el-button>
       </el-form-item>
     </el-form>
+    <GameResultsModal
+      v-if="game"
+      :visible="gameResultsModalVisible"
+      :game="game"
+      @close="closeGameResultsModal"
+    />
   </el-card>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import GameInstructionsModal from '@/components/GameInstructionsModal.vue';
+import GameResultsModal from '@/components/GameResultsModal.vue';
 import { playRequest } from '@/services/api';
 
 export default Vue.extend({
   components: {
     GameInstructionsModal,
+    GameResultsModal,
   },
   data() {
     return {
-      gameInstructionsDialogVisible: false,
+      gameInstructionsModalVisible: false,
+      gameResultsModalVisible: false,
+      game: null,
       form: {
         name: '',
         cards: '',
@@ -80,7 +90,11 @@ export default Vue.extend({
     async handleSubmit() {
       try {
         const response = await playRequest(this.form);
-        console.log(response);
+
+        // TODO: Add loading spinner
+
+        this.gameResultsModalVisible = true;
+        this.game = response;
       } catch (e) {
         if (e.response.status === 422) {
           const errorMsgs = e.response.data.errors;
@@ -109,7 +123,12 @@ export default Vue.extend({
       };
     },
     closeGameInstructionsModal() {
-      this.gameInstructionsDialogVisible = false;
+      this.gameInstructionsModalVisible = false;
+    },
+    closeGameResultsModal() {
+      this.gameResultsModalVisible = false;
+
+      this.clearForm();
     },
   },
 });
