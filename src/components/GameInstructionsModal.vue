@@ -6,7 +6,12 @@
   >
     <ul>
       <li class="mb-2">
-        <b>1.</b> Enter your username
+        <div>
+          <b>1.</b> Enter your username
+        </div>
+        <span class="text-xs text-gray-500">
+          Example: player1
+        </span>
         <ul class="list-disc list-inside ml-3">
           <li class="text-xs text-red-500">
             Only alphanumeric, dashes and underscores allowed
@@ -14,7 +19,12 @@
         </ul>
       </li>
       <li class="mb-2">
-        <b>2.</b> Enter a list of cards (player's hand)
+        <div>
+          <b>2.</b> Enter a list of cards separated by spaces (player's hand)
+        </div>
+        <span class="text-xs text-gray-500">
+          Example: 2 K 10
+        </span>
         <ul class="list-disc list-inside ml-3">
           <li class="text-xs text-red-500">
             1 to 13 cards

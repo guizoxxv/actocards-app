@@ -1,6 +1,9 @@
 <template>
   <el-card class="box-card">
-    <h2 class="text-center mb-5">Leaderboard</h2>
+    <h2 class="text-center mb-5">
+      <font-awesome-icon icon="trophy" />
+      Leaderboard
+    </h2>
     <el-table
       class="w-full"
       :data="tableData"
@@ -33,6 +36,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { Player } from '../interfaces/player.interface';
+import { leaderboardRequest } from '../services/api';
 
 export default Vue.extend({
   data() {
@@ -58,6 +63,18 @@ export default Vue.extend({
         },
       ],
     };
+  },
+  async mounted() {
+    const response = await leaderboardRequest();
+
+    this.$data.tableData = response.map((player: Player, index: number) => (
+      {
+        position: index + 1,
+        name: player.name,
+        games: player.games,
+        wins: player.wins,
+      }
+    ));
   },
 });
 </script>

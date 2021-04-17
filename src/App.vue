@@ -4,7 +4,7 @@
       <div class="content">
         <h1 class="text-center mb-5">ACTOCARDS</h1>
         <Game class="mb-5" />
-        <!-- <Leaderboard /> -->
+        <Leaderboard />
       </div>
     </main>
   </div>
@@ -20,7 +20,7 @@ import '@/assets/app.scss';
 export default Vue.extend({
   components: {
     Game,
-    // Leaderboard,
+    Leaderboard,
   },
 });
 </script>

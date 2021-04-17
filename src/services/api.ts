@@ -11,3 +11,9 @@ export async function playRequest({ name, cards }: PlayRequest) {
 
   return response.data;
 }
+
+export async function leaderboardRequest() {
+  const response = await axios.get(`${apiBaseUrl}/player/leaderboard`);
+
+  return response.data;
+}
