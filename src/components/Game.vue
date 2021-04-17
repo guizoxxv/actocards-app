@@ -1,62 +1,63 @@
 <template>
-  <el-card class="box-card">
-    <h2 class="text-center">Feeling Lucky?</h2>
-    <div class="my-5">
-      <span
-        class="underline cursor-pointer hover:font-bold"
-        @click="gameInstructionsModalVisible=true"
-      >
-        How it works?
-      </span>
-      <GameInstructionsModal
-        :visible="gameInstructionsModalVisible"
-        @close="closeGameInstructionsModal"
-      />
-    </div>
-    <el-form
-      ref="form"
-      :model="form"
-      @input.native="handleInput"
-      @submit.native.prevent="handleSubmit"
+<el-card class="box-card">
+  <h2 class="text-center">Feeling Lucky?</h2>
+  <div class="my-5">
+    <span
+      class="underline cursor-pointer hover:font-bold"
+      @click="gameInstructionsModalVisible=true"
     >
-      <el-form-item :error="errors.name">
-        <span slot="label" class="text-sm">Name:</span>
-        <el-input
-          placeholder="Player's name"
-          v-model="form.name"
-          required
-        />
-      </el-form-item>
-      <el-form-item :error="errors.cards" class="mb-8">
-        <span slot="label" class="text-sm">Cards:</span>
-        <el-input
-          placeholder="Player's cards"
-          v-model="form.cards"
-          required
-        />
-      </el-form-item>
-      <el-form-item class="text-center">
-        <el-button
-          type="warning"
-          native-type="button"
-          @click="clearForm"
-        >
-          <font-awesome-icon icon="times" />
-          Clear
-        </el-button>
-        <el-button type="primary" native-type="submit">
-          <font-awesome-icon icon="play" />
-          Play
-        </el-button>
-      </el-form-item>
-    </el-form>
-    <GameResultsModal
-      v-if="game"
-      :visible="gameResultsModalVisible"
-      :game="game"
-      @close="closeGameResultsModal"
+      <font-awesome-icon icon="info-circle" />
+      How it works?
+    </span>
+    <GameInstructionsModal
+      :visible="gameInstructionsModalVisible"
+      @close="closeGameInstructionsModal"
     />
-  </el-card>
+  </div>
+  <el-form
+    ref="form"
+    :model="form"
+    @input.native="handleInput"
+    @submit.native.prevent="handleSubmit"
+  >
+    <el-form-item :error="errors.name">
+      <span slot="label" class="text-sm">Name:</span>
+      <el-input
+        placeholder="Player's name"
+        v-model="form.name"
+        required
+      />
+    </el-form-item>
+    <el-form-item :error="errors.cards" class="mb-8">
+      <span slot="label" class="text-sm">Cards:</span>
+      <el-input
+        placeholder="Player's cards"
+        v-model="form.cards"
+        required
+      />
+    </el-form-item>
+    <el-form-item class="text-center">
+      <el-button
+        type="warning"
+        native-type="button"
+        @click="clearForm"
+      >
+        <font-awesome-icon icon="times" />
+        Clear
+      </el-button>
+      <el-button type="primary" native-type="submit">
+        <font-awesome-icon icon="play" />
+        Play
+      </el-button>
+    </el-form-item>
+  </el-form>
+  <GameResultsModal
+    v-if="game"
+    :visible="gameResultsModalVisible"
+    :game="game"
+    @close="closeGameResultsModal"
+  />
+</el-card>
 </template>
 
 <script lang="ts">
@@ -95,6 +96,8 @@ export default Vue.extend({
 
         this.gameResultsModalVisible = true;
         this.game = response;
+
+        this.$store.dispatch('fetchLeaderboard');
       } catch (e) {
         if (e.response.status === 422) {
           const errorMsgs = e.response.data.errors;

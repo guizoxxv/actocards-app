@@ -1,13 +1,13 @@
 <template>
-  <div id="app">
-    <main class="p-3 flex flex-col items-center justify-center">
-      <div class="content">
-        <h1 class="text-center mb-5">ACTOCARDS</h1>
-        <Game class="mb-5" />
-        <Leaderboard />
-      </div>
-    </main>
-  </div>
+<div id="app">
+  <main class="p-3 flex flex-col items-center justify-center">
+    <div class="content">
+      <h1 class="text-center mb-5">ACTOCARDS</h1>
+      <Game class="mb-5" />
+      <Leaderboard />
+    </div>
+  </main>
+</div>
 </template>
 
 <script lang="ts">
