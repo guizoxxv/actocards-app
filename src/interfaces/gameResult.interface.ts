@@ -1,6 +1,8 @@
+import { Player } from './player.interface';
+
 export interface GameResultInterface {
   id: number;
-  player: string;
+  player: Player;
   hands: string;
   player_score: number;
   computer_score: number;

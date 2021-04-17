@@ -9,7 +9,7 @@
     </h3>
     <div class="flex items-center justify-between">
       <span class="font-bold">Username:</span>
-      <span class="font-mono">{{ game.player }}</span>
+      <span class="font-mono">{{ game.player.name }}</span>
     </div>
     <div class="flex items-center justify-between">
       <span class="font-bold">Your hand:</span>
@@ -26,6 +26,17 @@
       <span class="text-xl font-bold mx-5">X</span>
       {{ game.computer_score }}
       <span class="text-xs ml-3">(Computer)</span>
+    </div>
+    <h4 class="text-center text-lg underline my-5">Stats</h4>
+    <div>
+      <div class="flex items-center justify-between">
+        <span class="font-bold">Games:</span>
+        <span class="font-mono">{{ game.player.games }}</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span class="font-bold">Wins:</span>
+        <span class="font-mono">{{ game.player.wins }}</span>
+      </div>
     </div>
   </el-dialog>
 </template>
