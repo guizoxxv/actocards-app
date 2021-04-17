@@ -21,6 +21,8 @@ export default new Vuex.Store({
           name: player.name,
           games: player.games,
           wins: player.wins,
+          losses: player.losses,
+          ties: player.ties,
         }
       ));
     },

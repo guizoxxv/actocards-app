@@ -5,7 +5,7 @@
   :before-close="onClose"
 >
   <h3 class="text-center text-lg mb-8 ">
-    {{ game.win ? 'YOU WON!' : 'YOU LOST!' }}
+    {{ gameStatus }}
   </h3>
   <div class="flex items-center justify-between">
     <span class="font-bold">Username:</span>
@@ -36,6 +36,14 @@
     <div class="flex items-center justify-between">
       <span class="font-bold">Wins:</span>
       <span class="font-mono">{{ game.player.wins }}</span>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="font-bold">Losses:</span>
+      <span class="font-mono">{{ game.player.losses }}</span>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="font-bold">Ties:</span>
+      <span class="font-mono">{{ game.player.ties }}</span>
     </div>
   </div>
 </el-dialog>
@@ -68,6 +76,17 @@ export default Vue.extend({
         player: playerHand,
         computer: computerHand,
       };
+    },
+    gameStatus(): string {
+      if (this.game.win) {
+        return 'YOU WIN!';
+      }
+
+      if (this.game.lose) {
+        return 'YOU LOSE!';
+      }
+
+      return "IT'S A TIE!";
     },
   },
 });

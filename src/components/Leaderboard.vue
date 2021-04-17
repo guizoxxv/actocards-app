@@ -13,23 +13,28 @@
     <el-table-column
       prop="position"
       label="#"
-    >
-    </el-table-column>
+      width="50px"
+    />
     <el-table-column
       prop="name"
       label="Name"
-    >
-    </el-table-column>
+    />
     <el-table-column
       prop="games"
       label="Games"
-    >
-    </el-table-column>
+    />
     <el-table-column
       prop="wins"
       label="Wins"
-    >
-    </el-table-column>
+    />
+    <el-table-column
+      prop="losses"
+      label="Losses"
+    />
+    <el-table-column
+      prop="ties"
+      label="Ties"
+    />
   </el-table>
 </el-card>
 </template>
