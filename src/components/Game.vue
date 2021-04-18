@@ -25,6 +25,7 @@
       <el-input
         placeholder="Player's name"
         v-model="form.name"
+        @input="handleNameInput"
         required
       />
     </el-form-item>
@@ -33,6 +34,7 @@
       <el-input
         placeholder="Player's cards"
         v-model="form.cards"
+        @input="handleCardsInput"
         required
       />
     </el-form-item>
@@ -109,6 +111,12 @@ export default Vue.extend({
           };
         }
       }
+    },
+    handleNameInput(val: string) {
+      this.form.name = val.toLowerCase();
+    },
+    handleCardsInput(val: string) {
+      this.form.cards = val.toUpperCase();
     },
     handleInput() {
       if (this.errors.active) {
