@@ -27,7 +27,7 @@
       </span>
       <ul class="list-disc list-inside ml-3">
         <li class="text-xs text-red-500">
-          1 to 13 cards
+          3 to 13 cards
         </li>
         <li class="text-xs text-red-500">
           Available cards: 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A
