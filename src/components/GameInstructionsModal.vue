@@ -3,6 +3,8 @@
   title="Game Instructions"
   :visible="visible"
   :before-close="onClose"
+  lock-scroll
+  width="80%"
 >
   <ul>
     <li class="mb-2">

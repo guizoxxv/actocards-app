@@ -128,6 +128,8 @@ export default Vue.extend({
       }
     },
     clearForm() {
+      this.handleInput();
+
       this.form = {
         name: '',
         cards: '',

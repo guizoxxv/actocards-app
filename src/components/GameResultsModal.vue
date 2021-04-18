@@ -3,9 +3,16 @@
   title="Game Results"
   :visible="visible"
   :before-close="onClose"
+  lock-scroll
+  width="80%"
 >
   <h3 class="text-center text-lg mb-8 ">
-    {{ gameStatus }}
+    <el-alert
+      :title="gameStatus.text"
+      :type="gameStatus.type"
+      center
+      :closable="false"
+    />
   </h3>
   <div class="flex items-center justify-between">
     <span class="font-bold">Username:</span>
@@ -52,6 +59,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { GameResultInterface } from '@/interfaces/gameResult.interface';
+import { GameStatusInterface } from '@/interfaces/gameStatus.interface';
 import { HandsInterface } from '@/interfaces/hands.interface';
 
 export default Vue.extend({
@@ -77,16 +85,25 @@ export default Vue.extend({
         computer: computerHand,
       };
     },
-    gameStatus(): string {
+    gameStatus(): GameStatusInterface {
       if (this.game.win) {
-        return 'YOU WIN!';
+        return {
+          text: 'YOU WIN!',
+          type: 'success',
+        };
       }
 
       if (this.game.lose) {
-        return 'YOU LOSE!';
+        return {
+          text: 'YOU LOSE!',
+          type: 'error',
+        };
       }
 
-      return "IT'S A TIE!";
+      return {
+        text: "IT'S A TIE!",
+        type: 'warning',
+      };
     },
   },
 });
