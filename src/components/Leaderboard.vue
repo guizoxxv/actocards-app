@@ -9,31 +9,43 @@
     :data="tableData"
     border
     stripe
+    fit
   >
     <el-table-column
       prop="position"
       label="#"
-      width="50px"
+      align="center"
+      resizable
     />
     <el-table-column
       prop="name"
       label="Name"
+      align="center"
+      resizable
     />
     <el-table-column
       prop="games"
       label="Games"
+      align="center"
+      resizable
     />
     <el-table-column
       prop="wins"
       label="Wins"
+      align="center"
+      resizable
     />
     <el-table-column
       prop="losses"
       label="Losses"
+      align="center"
+      resizable
     />
     <el-table-column
       prop="ties"
       label="Ties"
+      align="center"
+      resizable
     />
   </el-table>
 </el-card>
