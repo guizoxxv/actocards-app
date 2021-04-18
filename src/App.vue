@@ -1,12 +1,24 @@
 <template>
 <div id="app">
-  <main class="p-3 flex flex-col items-center justify-center">
-    <div class="content">
-      <h1 class="text-center mb-5">ACTOCARDS</h1>
-      <Game class="mb-5" />
-      <Leaderboard />
-    </div>
-  </main>
+  <el-container>
+    <el-main>
+      <el-row type="flex" justify="center">
+        <el-col class="content">
+          <h1 class="text-center mb-5">ACTOCARDS</h1>
+          <el-row class="mb-5">
+            <el-col>
+              <Game />
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col>
+              <Leaderboard />
+            </el-col>
+          </el-row>
+        </el-col>
+      </el-row>
+    </el-main>
+  </el-container>
 </div>
 </template>
 
