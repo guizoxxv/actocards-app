@@ -67,6 +67,7 @@ import Vue from 'vue';
 import GameInstructionsModal from '@/components/GameInstructionsModal.vue';
 import GameResultsModal from '@/components/GameResultsModal.vue';
 import { playRequest } from '@/services/api';
+import { Notification } from 'element-ui';
 
 export default Vue.extend({
   components: {
@@ -101,7 +102,7 @@ export default Vue.extend({
 
         this.$store.dispatch('fetchLeaderboard');
       } catch (e) {
-        if (e.response.status === 422) {
+        if (e.response?.status === 422) {
           const errorMsgs = e.response.data.errors;
 
           this.errors = {
@@ -110,6 +111,12 @@ export default Vue.extend({
             cards: errorMsgs.cards?.[0] || '',
           };
         }
+
+        Notification.error({
+          title: 'ERROR',
+          message: 'Failed to play',
+          duration: 4000,
+        });
       }
     },
     handleNameInput(val: string) {

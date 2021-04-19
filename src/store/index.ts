@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { Notification } from 'element-ui';
 import { Player } from '../interfaces/player.interface';
 import { leaderboardRequest } from '../services/api';
 
@@ -13,18 +14,26 @@ export default new Vuex.Store({
   },
   actions: {
     async fetchLeaderboard() {
-      const response = await leaderboardRequest();
+      try {
+        const response = await leaderboardRequest();
 
-      this.state.tableData = response.map((player: Player, index: number) => (
-        {
-          position: index + 1,
-          name: player.name,
-          games: player.games,
-          wins: player.wins,
-          losses: player.losses,
-          ties: player.ties,
-        }
-      ));
+        this.state.tableData = response.map((player: Player, index: number) => (
+          {
+            position: index + 1,
+            name: player.name,
+            games: player.games,
+            wins: player.wins,
+            losses: player.losses,
+            ties: player.ties,
+          }
+        ));
+      } catch (e) {
+        Notification.error({
+          title: 'ERROR',
+          message: 'Failed to fetch leaderboard data',
+          duration: 4000,
+        });
+      }
     },
   },
   modules: {
