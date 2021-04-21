@@ -54,7 +54,7 @@
     </el-form-item>
   </el-form>
   <GameResultsModal
-    v-if="game"
+    v-if="Object.keys(game).length"
     :visible="gameResultsModalVisible"
     :game="game"
     @close="closeGameResultsModal"
@@ -68,6 +68,7 @@ import GameInstructionsModal from '@/components/GameInstructionsModal.vue';
 import GameResultsModal from '@/components/GameResultsModal.vue';
 import { playRequest } from '@/services/api';
 import { Notification } from 'element-ui';
+import { Game } from '../interfaces/game.interface';
 
 export default Vue.extend({
   components: {
@@ -78,7 +79,7 @@ export default Vue.extend({
     return {
       gameInstructionsModalVisible: false,
       gameResultsModalVisible: false,
-      game: null,
+      game: {} as Game,
       form: {
         name: '',
         cards: '',
@@ -97,8 +98,8 @@ export default Vue.extend({
 
         // TODO: Add loading spinner
 
-        this.gameResultsModalVisible = true;
         this.game = response;
+        this.gameResultsModalVisible = true;
 
         this.$store.dispatch('fetchLeaderboard');
       } catch (e) {

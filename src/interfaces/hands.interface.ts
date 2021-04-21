@@ -1,4 +1,4 @@
-export interface HandsInterface {
+export interface Hands {
   player: string,
   computer: string,
 }

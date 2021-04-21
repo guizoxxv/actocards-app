@@ -58,15 +58,15 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { GameResultInterface } from '@/interfaces/gameResult.interface';
-import { GameStatusInterface } from '@/interfaces/gameStatus.interface';
-import { HandsInterface } from '@/interfaces/hands.interface';
+import { Game } from '@/interfaces/game.interface';
+import { GameStatus } from '@/interfaces/gameStatus.interface';
+import { Hands } from '@/interfaces/hands.interface';
 
 export default Vue.extend({
   props: {
     visible: Boolean,
     game: {
-      type: Object as () => GameResultInterface,
+      type: Object as () => Game,
     },
   },
   methods: {
@@ -75,7 +75,7 @@ export default Vue.extend({
     },
   },
   computed: {
-    hands(): HandsInterface {
+    hands(): Hands {
       const originalHands = JSON.parse(this.game.hands);
       const playerHand = originalHands.player.join(',');
       const computerHand = originalHands.computer.join(',');
@@ -85,7 +85,7 @@ export default Vue.extend({
         computer: computerHand,
       };
     },
-    gameStatus(): GameStatusInterface {
+    gameStatus(): GameStatus {
       if (this.game.win) {
         return {
           text: 'YOU WIN!',

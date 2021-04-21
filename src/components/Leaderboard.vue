@@ -6,7 +6,7 @@
   </h2>
   <el-table
     class="w-full"
-    :data="tableData"
+    :data="leaderboardData"
     border
     stripe
     fit
@@ -53,12 +53,11 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { mapState } from 'vuex';
 
 export default Vue.extend({
   computed: {
-    tableData() {
-      return this.$store.state.tableData;
-    },
+    ...mapState(['leaderboardData']),
   },
   mounted() {
     this.$store.dispatch('fetchLeaderboard');

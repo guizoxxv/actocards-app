@@ -1,4 +1,4 @@
-export interface GameStatusInterface {
+export interface GameStatus {
   text: string;
   type: string;
 }

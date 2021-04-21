@@ -8,25 +8,28 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    tableData: [],
+    leaderboardData: [] as Player[],
   },
   mutations: {
+    setLeaderboardData(state, players: Player[]): void {
+      state.leaderboardData = players.map((player: Player, index: number) => (
+        {
+          position: index + 1,
+          name: player.name,
+          games: player.games,
+          wins: player.wins,
+          losses: player.losses,
+          ties: player.ties,
+        }
+      ));
+    },
   },
   actions: {
-    async fetchLeaderboard() {
+    async fetchLeaderboard(): Promise<void> {
       try {
         const response = await leaderboardRequest();
 
-        this.state.tableData = response.map((player: Player, index: number) => (
-          {
-            position: index + 1,
-            name: player.name,
-            games: player.games,
-            wins: player.wins,
-            losses: player.losses,
-            ties: player.ties,
-          }
-        ));
+        this.commit('setLeaderboardData', response);
       } catch (e) {
         Notification.error({
           title: 'ERROR',
