@@ -100,8 +100,6 @@ export default Vue.extend({
 
         this.game = response;
         this.gameResultsModalVisible = true;
-
-        this.$store.dispatch('fetchLeaderboard');
       } catch (e) {
         if (e.response?.status === 422) {
           const errorMsgs = e.response.data.errors;

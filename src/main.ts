@@ -11,8 +11,29 @@ import {
   faTrophy,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import Echo from 'laravel-echo';
+import Pusher from 'pusher-js';
 import store from './store';
 import App from './App.vue';
+
+declare global {
+  interface Window {
+    Pusher: Pusher;
+    Echo: Echo;
+  }
+}
+
+window.Pusher = require('pusher-js');
+
+window.Echo = new Echo({
+  broadcaster: 'pusher',
+  key: process.env.VUE_APP_PUSHER_APP_KEY,
+  cluster: process.env.VUE_APP_PUSHER_APP_CLUSTER,
+  wsHost: process.env.VUE_APP_PUSHER_WSHOST,
+  wsPort: process.env.VUE_APP_PUSHER_WSPORT,
+  forceTLS: false,
+  enabledTransports: ['ws'],
+});
 
 library.add(faPlay);
 library.add(faTimes);

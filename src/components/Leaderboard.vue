@@ -54,6 +54,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { mapState } from 'vuex';
+import { UpdateLeaderboardResponse } from '../interfaces/updateLeaderboardResponse.interface';
 
 export default Vue.extend({
   computed: {
@@ -61,6 +62,12 @@ export default Vue.extend({
   },
   mounted() {
     this.$store.dispatch('fetchLeaderboard');
+
+    window.Echo.channel('actocards')
+      .listen('UpdateLeaderboard', (res: UpdateLeaderboardResponse) => {
+        this.$store.commit('setLeaderboardData', res.leaderboardData);
+        console.log('Leaderboard updated');
+      });
   },
 });
 </script>
