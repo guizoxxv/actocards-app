@@ -2,7 +2,7 @@
 
 Frontend of a cards game.
 
-> Backend in https://github.com/oliveiragsd/actocards-api
+> Backend in https://github.com/guizoxxv/actocards-api
 
 ## Technology
 
